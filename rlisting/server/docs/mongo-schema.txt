@@ -1,0 +1,88 @@
+db.user.drop();
+db.role.drop();
+db.route.drop();
+
+users = [{'password': '30274c47903bd1bac7633bbf09743149ebab805f', 'is_active': false, 'email': 'mary@demo.org', 'role':1}, 
+         {'password': '8843d7f92416211de9ebb963ff4ce28125932878', 'is_active': true, 'email': 'wendy@abc.com', 'role':2}, 
+         {'password': '30274c47903bd1bac7633bbf09743149ebab805f', 'is_active': false, 'email': 'dustin@demo.org', 'role':2}, 
+         {'password': '30274c47903bd1bac7633bbf09743149ebab805f', 'is_active': true, 'email': 'jenny@demo.org','role':2}, 
+         {'password': '5bf1fd927dfb8679496a2e6cf00cbe50c1c87145', 'is_active': true, 'email': 'fred@gmail.ca','role':2}];
+roles = [{'name':'admin', 'id':1}, {'name':'member', 'id':2}, {'name':'guest', 'id':3}];
+routes = [{'path':'/home', 'roles': [3]}, {'path':'/about', 'roles': [3]}, {'path':'/users', 'roles': [1]}];
+
+cities = [{'name':'Waterloo', 'province':'ON'},{'name':'Toronto','province':'ON'}]
+postcode = [{  'postcode':'', 
+	  'latitude':,
+	  longitude:,}]
+
+properties = [{}]
+
+
+db.user.insert(users);
+db.role.insert(roles);
+db.route.insert(routes);
+
+db.user.ensureIndex({email: 1}, {unique: true});
+db.role.ensureIndex({name: 1}, {unique: true});
+db.route.ensureIndex({path: 1}, {unique: true});
+////////////////////////////////
+[user]
+id
+email VARCHAR(32), 
+password VARCHAR(40), 
+active BOOL,
+phone VARCHAR(16)
+
+[role]
+id
+name landlord | tenant | admin
+
+[user_role]
+user_id
+role_id
+
+
+UtilityType = enum(Hydro = 1, Gas=2, Water=3, Internet = 4, Cable = 5)
+
+FeatureType = enum(Laundry = 1, Dryer = 2, Dishwasher = 3, Fireplace = 4, \
+                   Furnished = 5, Microwave = 6, Hardwood_Floor = 7, \
+                   Outdoor_Area = 8, Parking = 9, Refrigerator = 10, \
+                   Storage_Space = 11, Stove = 12)
+                   
+class PostCode(Base):
+    __tablename__ = 'postcode'
+    
+    id = Column(Integer, Sequence('postcode_id_seq'), primary_key=True)
+    city = Column(String(40))
+    province = Column(String(2))
+    postcode = Column(String(6), unique=True)
+    latitude = Column(Float())
+    longitude = Column(Float())
+    
+class College(Base):
+    __tablename__ = 'college'
+    
+    id = Column(Integer, Sequence('college_id_seq'), primary_key=True)
+    city = Column(String(40))
+    name = Column(String(128))
+    
+class Property(Base):
+    __tablename__ = 'property'
+      
+    id = Column(Integer, Sequence('property_id_seq'), primary_key=True)
+    address = Column(String(128))
+    utitlties = Column(String(128))
+    features = Column(String(128))
+    description = Column(String(320))
+    
+    # many-to-one relation with PostCode
+    college_id = Column(Integer, ForeignKey('college.id'))
+    college = relationship("College")
+    
+    # many-to-one relation with PostCode
+    postcode_id = Column(Integer, ForeignKey('postcode.id'))
+    postcode = relationship("PostCode")
+    
+    # many-to-one relation with Landlord
+    landlord_id = Column(Integer, ForeignKey('landlord.id'))
+    landlord = relationship("Landlord", backref="property")

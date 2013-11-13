@@ -1,0 +1,16 @@
+<h2>User Profile</h2>
+<form ng-submit="saveMessage()" >
+	<div>
+	  <label>name</label><input ng-model='message.name'>
+	</div>
+	<div>
+	  <label>phone</label><input ng-model='message.phone'>
+	</div>
+	<div>
+	  <label>email</label> <input type='checkbox' ng-model='message.email>
+	</div>
+	<div>
+	  <label>content</label> <input type='text' ng-model="message.content">
+	</div>
+	<input type="submit" value="Submit">
+</form>

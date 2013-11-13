@@ -1,0 +1,29 @@
+<div> 
+	<p>This is message list Page</p> 
+	<table class="table table-condensed table-bordered table-hover">
+		<thead>
+			<tr>
+				<th> id </th>
+				<th>name</th>
+				<th>phone</th>
+				<th>email</th>
+				<th>content</th>
+				<th>mark</th>
+				<th>delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-class-even="'even'" ng-class='{selected: $index==selectedRow}' ng-click='selectUser($index)' ng-repeat="message in messages">
+
+				<td>{{$index + 1}}</td>
+				<td>{{message.name}}</td>
+				<td>{{message.phone}}</td>
+				<td>{{message.email}}</td>
+				<td>{{message.content}}</td>
+				<td><a class='btn btn-primary' href="/message/{{message._id}}" ng-class='{disabled: index < 0}'>{{message.city}}</a></td>
+				<td><a class='btn btn-primary' ng-click='deleteUser(user, $index)' ng-class='{disabled: index < 0}'>Delete</a></td>
+
+			<tr>
+		</tbody>
+	</table>
+</div>

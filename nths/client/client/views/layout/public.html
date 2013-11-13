@@ -1,0 +1,42 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="/">Public Apps</a>
+  
+	<div class="nav-collapse collapse">
+	    <ul class="nav">
+		    <li><a href="/home">Home</a></li>
+		    <li><a href="/products">Products</a></li>
+		    <li><a href="/login" >Login</a></li>
+	    </ul>
+	</div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span8" ui-view></div>
+  <div class="span4" ng-controller="AddMessageCtrl">
+  	<p>Leave us a message:</p>
+	<form ng-submit="saveMessage()" >
+		<div>
+		  <label>name</label><input ng-model='message.name'>
+		</div>
+		<div>
+		  <label>phone</label><input ng-model='message.phone'>
+		</div>
+		<div>
+		  <label>email</label><input ng-model='message.email'>
+		</div>
+		<div>
+		  <label>content</label> <textarea class="form-control" rows="3" ng-model="message.content"/>
+		</div>
+		<input type="submit" value="Submit">
+	</form>
+  </div>
+</div>

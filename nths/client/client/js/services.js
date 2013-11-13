@@ -1,4 +1,8 @@
 'use strict';
+
+var fdServices = angular.module('fdServices', ['ngResource']);
+
+
 //10.100.78.143
 //var resourceRoot = 'http://192.168.1.109\\:3000';
 //var httpRoot = 'http://192.168.1.109:3000';
@@ -21,7 +25,7 @@ demoApp.factory('User', function($resource, SessionService) {
 //	});
 //});
 
-demoApp.factory('Message', function($http, SessionService){
+fdServices.factory('Message', function($http, SessionService){
 	var tokenid = SessionService.get('tid');
 	return {
 		getById: function(id){
@@ -46,21 +50,7 @@ demoApp.factory('Message', function($http, SessionService){
 	}
 });
 
-demoApp.factory('SessionService', function(){
-	return {
-		get: function(key){
-			return sessionStorage.getItem(key);
-		},
-		set: function(key,value){
-			return sessionStorage.setItem(key, value);
-		},
-		unset: function(key){
-			return sessionStorage.removeItem(key);
-		}
-	};
-});
-
-demoApp.factory('AuthenticationService', function($http, $location,
+fdServices.factory('AuthenticationService', function($http, 
 		SessionService, FlashService) {
 	var cacheSession = function(value) {
 		SessionService.set('tid', value);
@@ -102,7 +92,21 @@ demoApp.factory('AuthenticationService', function($http, $location,
 	};
 });
 
-demoApp.factory("FlashService", ['$rootScope', function($rootScope) {
+fdServices.factory('SessionService', function(){
+	return {
+		get: function(key){
+			return sessionStorage.getItem(key);
+		},
+		set: function(key,value){
+			return sessionStorage.setItem(key, value);
+		},
+		unset: function(key){
+			return sessionStorage.removeItem(key);
+		}
+	};
+});
+
+fdServices.factory("FlashService", ['$rootScope', function($rootScope) {
 	return {
 		set: function(message) {
 			$rootScope.flash = message;
@@ -116,6 +120,20 @@ demoApp.factory("FlashService", ['$rootScope', function($rootScope) {
 	}
 }]);
 
+fdServices.factory('PageService', function(){
+	return {
+		pageCount : function(itemCount, pageSize) {
+			return Math.ceil(parseInt(itemCount) / parseInt(pageSize));
+		},
+		pageList : function(segment, pageCount) {
+			var result = new Array(pageCount);
+			for ( var i = 0; i < pageCount; i++) {
+				result[i] = segment*10 + i;
+			}
+			return result;
+		}
+	};
+});
 demoApp.run(function($rootScope, $location, $state, AuthenticationService) {
 	var publicRoutes = [ '/','/products', '/login' ];
 

@@ -14,5 +14,5 @@ a visitor will be able to:
 
 a message processor will be able to 
 1) put messages into an email(required).
-name*/phone*/email*/city/message
+name*/phone*/email*/city/content
 

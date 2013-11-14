@@ -1,5 +1,7 @@
 'use strict';
 
+var nthsControllers = angular.module('nthsControllers', []);
+
 ///////////////// User Start///////////////////////
 demoApp.controller('UserCtrl', function ($scope, $http, User) {
 	$scope.users = User.query();
@@ -36,20 +38,20 @@ demoApp.controller('EditUserCtrl', function($scope, $location, $routeParams, Use
 
 ///////////////// Message Start///////////////////////
 
-demoApp.controller('MessageCtrl', function ($scope, $http, Message) {
+nthsControllers.controller('MessageCtrl', function ($scope, $http, Message) {
 
 	Message.query().success(function(response,status){
 		$scope.messages = response;
 	});
 
-	$scope.selectMessage = function(row) {
-		$scope.selectedRow = row;
-	};
-	
-	$scope.deleteMessage = function(message, index) {
-		message.$delete({id:message._id});
-		$scope.messages.splice(index, 1);
-	};
+//	$scope.selectMessage = function(row) {
+//		$scope.selectedRow = row;
+//	};
+//	
+//	$scope.deleteMessage = function(message, index) {
+//		message.$delete({id:message._id});
+//		$scope.messages.splice(index, 1);
+//	};
 });
 
 demoApp.controller('AddMessageCtrl', function($scope, $location, Message) {

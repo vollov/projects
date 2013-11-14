@@ -2,7 +2,6 @@
 
 var fdServices = angular.module('fdServices', ['ngResource']);
 
-
 //10.100.78.143
 //var resourceRoot = 'http://192.168.1.109\\:3000';
 //var httpRoot = 'http://192.168.1.109:3000';

@@ -1,6 +1,6 @@
 'use strict';
 
-var demoApp = angular.module('appModule', [ 'ngResource', 'ngCookies', 'ui.router', 'fdServices' ]);
+var demoApp = angular.module('appModule', [ 'ngResource', 'ngCookies', 'ui.router', 'fdServices', 'nthsControllers' ]);
 
 demoApp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 	$urlRouterProvider.otherwise("/");

@@ -37,13 +37,23 @@ demoApp.controller('EditUserCtrl', function($scope, $location, $routeParams, Use
 });
 
 ///////////////// Message Start///////////////////////
+nthsControllers.value('settings', {pageSize: 15});
 
-nthsControllers.controller('MessageCtrl', function ($scope, $http, Message) {
-
+nthsControllers.controller('MessageCtrl', function ($scope, $filter, Message, PageService) {
+	$scope.pageSize = PageService.pageSize();
+	
 	Message.query().success(function(response,status){
-		$scope.messages = response;
+		$scope.segments = response;
+		$scope.messages = $filter('paginate')($scope.segments,0);
+		$scope.pageCount = PageService.pageCount($scope.segments.length);
+		$scope.page = 0;
 	});
 
+	$scope.setPage = function(page){
+		$scope.page = page;
+		$scope.messages = $filter('paginate')($scope.segments,page);
+	};
+	
 //	$scope.selectMessage = function(row) {
 //		$scope.selectedRow = row;
 //	};
@@ -54,14 +64,33 @@ nthsControllers.controller('MessageCtrl', function ($scope, $http, Message) {
 //	};
 });
 
+//demoApp.controller('PostCodeCtrl', function ($scope, $http, $filter, PostCode, PageService) {
+////	$scope.page = 0;
+//	$scope.size = 20;
+//	 
+//	
+//	PostCode.query().success(function(response,status){
+//		$scope.segments = response;
+//		$scope.postcodes = $filter('paginate')($scope.segments,0,$scope.size);
+//		$scope.pageCount = PageService.pageCount($scope.segments.length, $scope.size)
+//	});
+//	
+//	$scope.setPage = function(page){
+//		//debugger;
+//		console.log('got page=' + page);
+//		$scope.postcodes = $filter('paginate')($scope.segments,page,$scope.size);
+//	};
+//});
+
 demoApp.controller('AddMessageCtrl', function($scope, $location, Message) {
-	
+	$scope.text = 'Please submit a message';
 	$scope.saveMessage = function() {
 		//dump($scope.message);
 //		$scope.message.status = 'unread';
 //		console.log('calling save message %j', $scope.message);
 //		
 		Message.save($scope.message, function() {
+			$scope.text = 'Message saved!';
 			//$location.path('/users');
 		});
 	};
@@ -89,13 +118,13 @@ demoApp.controller("NavCtrl", function($scope, $location, AuthenticationService)
 	};
 });
 
-demoApp.controller('LoginCtrl', function ($scope, $location, $cookieStore, AuthenticationService) {
+demoApp.controller('LoginCtrl', function ($scope, $location,$state, $cookieStore, AuthenticationService) {
 	$scope.credentials = { username: "", password: ""};
 	
 	$scope.login = function() {
 		AuthenticationService.login($scope.credentials).success(function() {
-			$location.path('/messages');
-			//$state.go('admin.messages');
+			//$location.path('/messages');
+			$state.go('admin.messages');
 		});
 	};
 	

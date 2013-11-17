@@ -6,7 +6,7 @@ var db = require('../lib/db.js')
 module.exports = function(app) {
 	app.get('/api/message', function(req, res) {
 		
-		db.find('message',{},{},10, function(err, messages) {
+		db.find('message',{}, function(err, messages) {
 			if (!err) {
 				//console.log('server get message req return=%j', messages);
 				return res.send(messages);
@@ -30,7 +30,7 @@ module.exports = function(app) {
 	
 	app.post('/public/message', function(req, res){
 		console.log('server get POST message = %j', req.body);
-		//db.save('message', req.body)
+		db.save('message', req.body)
 		res.send(req.body);
 	});
 	

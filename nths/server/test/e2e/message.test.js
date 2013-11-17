@@ -67,7 +67,7 @@ describe('Test message api', function() {
 			.expect(200)
 			.end(function(err,res){
 				should.not.exist(err);
-				res.body.should.have.lengthOf(2);
+				res.body.should.have.lengthOf(31);
 				if (err) return done(err);
 				done();
 			});

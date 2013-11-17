@@ -9,6 +9,9 @@ $mongo localhost:27017/nths schema.js
 $redis-cli
 >hmset f2cb3e8d653f46008272113c6c72422843901ef3 username wendy@abc.com role 2
 
+mongoimport -d nths -c message --type csv --file ./message.csv --headerline
+
+
 f2cb3e8d653f46008272113c6c72422843901ef3
 
 session related codes
@@ -27,3 +30,5 @@ session related codes
 
 //				req.session.email = user.email;
 
+[2] to run test
+karma start config/karma.conf.js $*

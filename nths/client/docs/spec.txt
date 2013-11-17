@@ -16,3 +16,7 @@ a message processor will be able to
 1) put messages into an email(required).
 name*/phone*/email*/city/content
 
+[2]message spec
+
+list: when /api/message, return all lists from db
+paging: 

@@ -2,9 +2,33 @@ var mongojs = require('mongojs');
 var db = mongojs('localhost/nths');
 
 module.exports = {
-    find : function(collection, query, projection, limit, callback) {
+	// quest = {query:{},projection:{},sort:{},limit: 100 }
+    find : function(collection, quest, callback) {
+    	var query,projection,limit;
+    	if(!('query' in quest)){
+    		query = {};
+    	} else {
+    		query = quest['query'];
+    	};
+    	if(!('projection' in quest)){
+    		projection = {};
+    	} else {
+    		projection = quest['projection'];
+    	};
+    	
+    	if(!('sort' in quest)){
+    		sort = {};
+    	} else {
+    		sort = quest['sort'];
+    	};
+    	
+    	if(!('limit' in quest)){
+    		db.collection(collection).find(query, projection).sort(sort).toArray(callback);
+    	} else {
+    		limit = quest['limit'];
+    		db.collection(collection).find(query, projection).sort(sort).limit(limit).toArray(callback);
+    	};
 //    	projection = (typeof projection === "undefined") ? {} : projection;
-    	db.collection(collection).find(query, projection).limit(limit).toArray(callback);
         //console.log('find db=> ' + db + ' , coll=> ' + collection);
     },
     // callback:function(err, doc) {...};

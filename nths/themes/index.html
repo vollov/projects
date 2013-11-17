@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-ng-app="appModule">
+<head>
+  <meta charset="utf-8">
+  <title>Build Tracker</title>
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">NT Home Service</a>
+          
+          <div class="nav-collapse collapse" ng-controller="NavCtrl">
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link">Username</a>
+            </p>
+            <ul class="nav">
+            <li><a href="./index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Brands <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+              </ul>
+          </li>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./faq.html">FAQ</a></li>
+            </ul>
+            <form class="navbar-form pull-right">
+              <input class="span2" type="text" placeholder="Email">
+              <input class="span2" type="password" placeholder="Password">
+              <button type="submit" class="btn">Sign in</button>
+            </form>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div> Here is the comtents</div>
+    </div> <!-- /container -->
+
+
+  <script src="lib/jquery/jquery.min.js"></script>
+
+  <!-- UI Libs   -->
+  <script src="lib/twitter/bootstrap.js"></script>
+</body>
+</html>
+

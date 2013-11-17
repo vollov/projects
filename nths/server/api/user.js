@@ -5,7 +5,7 @@ var db = require('../lib/db.js')
 
 module.exports = function(app) {
 	app.get('/api/user', function(req, res) {
-		db.find('user',{},{},10, function(err, users) {
+		db.find('user',{limit:10}, function(err, users) {
 			if (!err) {
 				return res.send(users);
 			} else {
@@ -16,7 +16,7 @@ module.exports = function(app) {
 
 	app.get('/api/user/:id', function(req, res){
 		var id = req.params.id;
-		db.findOne('user', {'_id': mongojs.ObjectId(id)}, {}, function(err, user){
+		db.findOne('user', {query:{'_id': mongojs.ObjectId(id)}}, function(err, user){
 			if (!err) {
 				//console.log('look up user.email = %j',user.email);
 				return res.send(user);

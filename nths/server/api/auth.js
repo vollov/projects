@@ -53,4 +53,8 @@ module.exports = function(app) {
 	app.get('/public/routes', function(req, res){
 		return res.send(200, {routes: ['/','/login','/logout','/about']});
 	});
+	
+	app.get('/public/settings', function(req, res){
+		return res.send(200, {pageSize:12});
+	});
 }

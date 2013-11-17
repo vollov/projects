@@ -34,7 +34,7 @@ fdServices.factory('Message', function($http, SessionService){
 			return $http.get(httpRoot + '/api/message', {params: {tid: tokenid}});
 		},
 		save: function(message){
-			return $http.post(httpRoot + '/public/login', message).
+			return $http.post(httpRoot + '/public/message', message).
 			success(function(response,status){
 				if(status == 200){
 					console.log('message saved: %j', response);
@@ -48,6 +48,21 @@ fdServices.factory('Message', function($http, SessionService){
 		}
 	}
 });
+
+//fdServices.factory('Settings', function($http){
+//	var settings;
+//	
+//	return {
+//		getSettings: function(){
+//			if(settings == undefined || settings == null){
+//				$http.get(httpRoot + '/public/settings').success(function(response,status){
+//					settings = response;
+//				});
+//			}
+//			return settings;
+//		}
+//	}
+//});
 
 fdServices.factory('AuthenticationService', function($http, 
 		SessionService, FlashService) {
@@ -119,20 +134,26 @@ fdServices.factory("FlashService", ['$rootScope', function($rootScope) {
 	}
 }]);
 
-fdServices.factory('PageService', function(){
+fdServices.factory('PageService', function(settings){
 	return {
-		pageCount : function(itemCount, pageSize) {
-			return Math.ceil(parseInt(itemCount) / parseInt(pageSize));
+		// count number of pages with items
+		pageCount : function(itemCount) {
+			return Math.ceil(parseInt(itemCount) / parseInt(settings.pageSize));
 		},
+		// compute the numbers showed on the list
 		pageList : function(segment, pageCount) {
 			var result = new Array(pageCount);
 			for ( var i = 0; i < pageCount; i++) {
 				result[i] = segment*10 + i;
 			}
 			return result;
+		},
+		pageSize : function(){
+			return settings.pageSize;
 		}
 	};
 });
+
 demoApp.run(function($rootScope, $location, $state, AuthenticationService) {
 	var publicRoutes = [ '/','/products', '/login' ];
 

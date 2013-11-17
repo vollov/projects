@@ -26,19 +26,20 @@ demoApp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 		url : '/messages',
 		controller : 'MessageCtrl',
 		templateUrl : "views/admin/message/list.html"
-	}).state('admin.users', {
-		url : '/users',
-		controller : 'UserCtrl',
-		templateUrl : 'views/user/list.html'
-	}).state('admin.user', {
-		url : '/user',
-		controller : 'AddUserCtrl',
-		templateUrl : 'views/user/detail.html'
-	}).state('admin.user.id', {
-		url : '/user/:id',
-		controller : 'EditUserCtrl',
-		templateUrl : 'views/user/detail.html'
 	});
+//	.state('admin.users', {
+//		url : '/users',
+//		controller : 'UserCtrl',
+//		templateUrl : 'views/user/list.html'
+//	}).state('admin.user', {
+//		url : '/user',
+//		controller : 'AddUserCtrl',
+//		templateUrl : 'views/user/detail.html'
+//	}).state('admin.user.id', {
+//		url : '/user/:id',
+//		controller : 'EditUserCtrl',
+//		templateUrl : 'views/user/detail.html'
+//	});
 	
 	$locationProvider.html5Mode(true);
 });

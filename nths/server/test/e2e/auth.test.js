@@ -14,7 +14,6 @@ describe('Test auth service', function() {
 	/////////////////////////////////////////////////////////////
 	describe('Test login api: POST->' + url_login, function() {
 		
-		
 		it('should return HTTP 200 if authentication success', function(done) {
 			
 			var credentials = {
@@ -124,6 +123,27 @@ describe('Test auth service', function() {
 					should.not.exist(err);
 					reply.should.equal(0);
 				});
+				done();
+			});
+		});
+	});
+	
+	/////////////////////////////////////////////////////////////
+	//  Settings api
+	/////////////////////////////////////////////////////////////
+	var url_settings = '/public/settings';
+	
+	describe('Test settings api: GET->' + url_settings, function() {
+		it('should return settings', function(done){
+			request(app)
+			.get(url_settings)
+			.expect('Content-Type', /json/)
+			.expect('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With')
+			.expect(200)
+			.end(function(err,res){
+				should.not.exist(err);
+				
+				res.body.should.have.property('pageSize', 12);
 				done();
 			});
 		});

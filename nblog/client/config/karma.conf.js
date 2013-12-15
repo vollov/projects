@@ -3,14 +3,13 @@ module.exports = function(config){
     basePath : '../',
 
     files : [
-     'client/lib/jquery/jquery.min.js',
-     'client/lib/angular/angular.js',
-     'client/lib/angular/angular-*.js',
-//             'client/lib/angular/angular-resource.js',
-     'client/lib/underscore/underscore.min.js',
+     'app/lib/jquery/jquery.min.js',
+     'app/lib/angular/angular.js',
+     'app/lib/angular/angular-*.js',
+     'app/lib/underscore/underscore.min.js',
      'test/lib/angular/angular-mocks.js',
-     'client/js/**/*.js',
-//      'test/unit/**/*.js',
+     'app/js/**/*.js',
+
       'test/unit/services/sessionServiceSpec.js',
       'test/unit/services/flashServiceSpec.js',
       'test/unit/services/authenticationServiceSpec.js',

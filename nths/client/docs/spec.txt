@@ -20,3 +20,5 @@ name*/phone*/email*/city/content
 
 list: when /api/message, return all lists from db
 paging: 
+
+

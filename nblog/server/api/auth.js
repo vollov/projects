@@ -1,5 +1,4 @@
 var db = require('../lib/db.js')
-	//, mongojs = require('mongojs')
 	, security = require('../lib/security')
 	, redisService = require('../lib/redis');
 

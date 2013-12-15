@@ -1,0 +1,17 @@
+client views:
+state/template/url
+[
+{public, layout/public.html,''},
+{admin, layout/admin.html,''},
+{public.login, public/login.html, /login},
+{public.home, public/home.html, /},
+{public.about, public/about.html, /about},
+{public.blog, public/blog.html, /blog/:id (GET)},
+{admin.blogs, admin/blog/list.html, /blogs},
+{admin.blog.detail, admin/blog/detail.html, /admin/blog/:id (GET)},
+{admin.blog.add, admin/blog/detail.html, /admin/blog/add (GET)},
+]
+
+server apis:
+GET		public/blogs
+POST	api/blog

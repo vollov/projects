@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="appModule">
+	<head>
+		<title>Vollow - web application service</title>
+		<link rel="stylesheet" href="css/styles.css" type="text/css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<div id="navigation">
+					<ul>
+						<li><a href="/">HOME</a></li>
+						<li><a href="/web-design">WEB DESIGN</a></li>
+						<li><a href="/it-consulting">IT CONSULTING</a></li>
+						<li><a href="/portfolio">PORTFOLIO</a></li>
+					</ul>
+				</div>
+				<div id="logo"/>
+					<div id="subtitle">Porfessional web site design</div>	
+					<div class="subtitle-blue">and Software consulting </div>			
+				</div>
+				<div id="contact"/>
+					<div class="column">
+						<div class="column-text">
+							<h3>Kitchener Office:</h3>
+							<p>284 Purple Sage Crescent, Kitchener, Ontario N2E 4G6</p>
+							<ul>
+								<li>Tel: 519-616-3168</li>
+								<li>Fax: 519-884-6118 </li>
+								<li>Email: vollov.ca@gmail.com</li>
+							</ul>
+						</div>
+					</div>	
+					<div class="column">
+						<div class="column-text">
+							<h3>London Office:</h3>
+							<p>Room 311, 756 Kipps Lane, London, Ontario</p>
+							<ul>
+								<li>Tel:  519-932-0586</li>
+								<li>Email: vollov.ca@gmail.com</li>
+							</ul>
+						</div>
+					</div>			
+				</div>
+			</div>
+			<div id="content">
+				<div ng-view></div>
+			</div>
+			
+			<div id="footer">
+				<div id="legal">Copyright &copy; 2009-2014 vollov.ca All Rights Reserved. Designed by: vollov.ca [at] gmail.com.</div>
+				<div id="links">
+					<ul>
+						<li><a href="#">Privacy Policy</a></li>
+						<li><a href="#">Terms of Use</a></li>
+					</ul>
+				</p>
+			</div>
+		</div>
+		<!--end of wrapper-->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.8/angular.min.js"></script>
+  		<script src="js/app.js"></script>
+	</body>
+</html>
